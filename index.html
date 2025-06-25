@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PackSavvy Solutions - Modern Packaging</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">PackSavvy Solutions</div>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#products">Products</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </header>
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Premium Paper & Packaging Solutions</h1>
+                <p>High-quality materials for all your boxing needs</p>
+                <button>Shop Now</button>
+            </div>
+        </section>
+        <section id="about" class="about">
+            <div class="about-text" data-aos="fade-right">
+                <h2>About Us</h2>
+                <p>PackSavvy Solutions is your trusted partner in packaging, offering innovative and sustainable paper products for businesses worldwide.</p>
+            </div>
+            <div class="about-image" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Our Team">
+            </div>
+        </section>
+        <section id="products" class="products">
+            <h2 data-aos="fade-up">Our Products</h2>
+            <div class="product-grid">
+                <div class="product" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Kraft Paper Rolls">
+                    <h3>Kraft Paper Rolls</h3>
+                    <p>Durable and eco-friendly for all packaging needs</p>
+                </div>
+                <div class="product" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1586374579358-9d19d632b698?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Custom Cardboard Boxes">
+                    <h3>Custom Cardboard Boxes</h3>
+                    <p>Tailored designs to fit your brand</p>
+                </div>
+                <div class="product" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1602143407151-1b66b3e29735?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Packaging Tape">
+                    <h3>Packaging Tape</h3>
+                    <p>Strong adhesion for secure shipments</p>
+                </div>
+            </div>
+        </section>
+        <section id="testimonials" class="testimonials">
+            <h2 data-aos="fade-up">What Our Clients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial" data-aos="flip-left">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Client 1">
+                    <p>"The best packaging materials we've ever used!"</p>
+                    <span>John Doe, BoxCo</span>
+                </div>
+                <div class="testimonial" data-aos="flip-left" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Client 2">
+                    <p>"Fast, reliable, and beautifully designed products."</p>
+                    <span>Jane Smith, PackPro</span>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="contact">
+            <h2 data-aos="fade-up">Get in Touch</h2>
+            <div class="contact-wrapper">
+                <form data-aos="fade-right">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+                <div class="contact-info" data-aos="fade-left">
+                    <p><strong>Email:</strong> info@packsavvysolutions.com</p>
+                    <p><strong>Phone:</strong> (555) 123-4567</p>
+                    <p><strong>Address:</strong> 123 Packaging Lane, Industry City</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 PackSavvy Solutions. All rights reserved.</p>
+        <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+    <button id="back-to-top">↑</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
