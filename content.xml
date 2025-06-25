@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<website>
+  <!-- Logo -->
+  <logo>PackSavvy Solutions</logo>
+  
+  <!-- Navigation Menu -->
+  <nav>
+    <item href="#hero">Home</item>
+    <item href="#about">About</item>
+    <item href="#products">Products</item>
+    <item href="#testimonials">Testimonials</item>
+    <item href="#contact">Contact</item>
+  </nav>
+  
+  <!-- Hero Section -->
+  <hero>
+    <image url="https://images.unsplash.com/photo-1586208959836-73e4d717a58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"/>
+    <headline>Premium Paper & Packaging Solutions</headline>
+    <subtext>High-quality materials for all your boxing needs</subtext>
+    <button>Shop Now</button>
+  </hero>
+  
+  <!-- About Section -->
+  <about>
+    <image url="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"/>
+    <text>PackSavvy Solutions is your trusted partner in packaging, offering innovative and sustainable paper products for businesses worldwide.</text>
+  </about>
+  
+  <!-- Products Section -->
+  <products>
+    <product>
+      <image url="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"/>
+      <name>Kraft Paper Rolls</name>
+      <description>Durable and eco-friendly for all packaging needs</description>
+      <button>Learn More</button>
+    </product>
+    <product>
+      <image url="https://images.unsplash.com/photo-1586374579358-9d19d632b698?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"/>
+      <name>Custom Cardboard Boxes</name>
+      <description>Tailored designs to fit your brand</description>
+      <button>Learn More</button>
+    </product>
+    <product>
+      <image url="https://images.unsplash.com/photo-1602143407151-1b66b3e29735?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"/>
+      <name>Packaging Tape</name>
+      <description>Strong adhesion for secure shipments</description>
+      <button>Learn More</button>
+    </product>
+  </products>
+  
+  <!-- Testimonials Section -->
+  <testimonials>
+    <testimonial>
+      <image url="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"/>
+      <text>"The best packaging materials we've ever used!"</text>
+      <name>John Doe</name>
+      <company>BoxCo</company>
+    </testimonial>
+    <testimonial>
+      <image url="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"/>
+      <text>"Fast, reliable, and beautifully designed products."</text>
+      <name>Jane Smith</name>
+      <company>PackPro</company>
+    </testimonial>
+  </testimonials>
+  
+  <!-- Contact Section -->
+  <contact>
+    <form>
+      <labels>
+        <name>Name</name>
+        <email>Email</email>
+        <message>Message</message>
+      </labels>
+      <button>Send Message</button>
+    </form>
+    <info>
+      <email>info@packsavvysolutions.com</email>
+      <phone>(555) 123-4567</phone>
+      <address>123 Packaging Lane, Industry City</address>
+    </info>
+    <social>
+      <platform name="Facebook" icon="fab fa-facebook" url="https://facebook.com/packsavvysolutions"/>
+      <platform name="Twitter" icon="fab fa-twitter" url="https://twitter.com/packsavvysolutions"/>
+      <platform name="Instagram" icon="fab fa-instagram" url="https://instagram.com/packsavvysolutions"/>
+    </social>
+  </contact>
+</website>
