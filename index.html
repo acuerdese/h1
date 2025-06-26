@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5; /* Light gray background */
+            background-color: #eae6e3; /* Very light grey/off-white from palette */
             padding-top: 64px; /* Adjust for fixed header height */
         }
         .fixed-header {
@@ -96,7 +96,7 @@
             transform: translateY(20px);
             opacity: 0;
             animation: fadeInScale 0.6s ease-out forwards;
-            background-color: white;
+            background-color: #cad2c5; /* Light grey-green from palette */
             box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* Subtle shadow */
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
@@ -108,7 +108,7 @@
             transition: background-color 0.3s ease-in-out, transform 0.1s ease-in-out;
         }
         .add-to-cart-button:hover {
-            background-color: #e03a00; /* Darker red on hover */
+            background-color: #55675b; /* Dark green-grey for hover */
             transform: translateY(-2px); /* Slight lift */
         }
         .add-to-cart-button:active {
@@ -129,23 +129,81 @@
         .gadget-card:nth-child(6) { animation-delay: 0.6s; }
         .gadget-card:nth-child(7) { animation-delay: 0.7s; }
         .gadget-card:nth-child(8) { animation-delay: 0.8s; }
-        /* Add more as needed for the number of products */
+
+        /* Responsive menu styling */
+        .mobile-menu-container {
+            position: absolute;
+            top: 100%; /* Position below the header */
+            left: 0;
+            width: 100%;
+            background-color: #394e59; /* Dark grey-blue for mobile menu */
+            flex-direction: column;
+            padding: 1rem 0;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease-out;
+            transform: translateY(-100%); /* Start hidden above */
+            opacity: 0;
+            pointer-events: none; /* Disable interaction when hidden */
+        }
+        .mobile-menu-container.active {
+            transform: translateY(0); /* Slide down */
+            opacity: 1;
+            pointer-events: auto; /* Enable interaction when active */
+        }
+        .mobile-menu-container ul {
+            flex-direction: column;
+            align-items: center;
+        }
+        .mobile-menu-container li {
+            width: 100%;
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+        .mobile-menu-container a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: white;
+            font-size: 1.125rem; /* text-lg */
+            transition: background-color 0.2s ease;
+        }
+        .mobile-menu-container a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
     </style>
 </head>
 <body class="antialiased text-gray-800">
 
     <!-- Fixed Header -->
-    <header class="fixed-header bg-gradient-to-r from-purple-700 to-pink-600 py-4 shadow-lg">
-        <div class="container mx-auto px-4 flex justify-between items-center">
+    <header class="fixed-header bg-[#1d3557] py-4 shadow-lg"> <!-- Dark blue/navy from palette -->
+        <div class="container mx-auto px-4 flex justify-between items-center relative">
             <a href="index.html" class="text-3xl font-extrabold text-white tracking-tight leading-none">Gadget Joint</a>
-            <nav>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
                 <ul class="flex space-x-6">
-                    <li><a href="index.html" class="text-white hover:text-purple-200 text-lg font-medium transition-colors duration-200">Home</a></li>
-                    <li><a href="about.html" class="text-white hover:text-purple-200 text-lg font-medium transition-colors duration-200">About Us</a></li>
-                    <li><a href="services.html" class="text-white hover:text-purple-200 text-lg font-medium transition-colors duration-200">Services</a></li>
-                    <li><a href="contact.html" class="text-white hover:text-purple-200 text-lg font-medium transition-colors duration-200">Contact</a></li>
+                    <li><a href="index.html" class="text-white hover:text-[#cad2c5] text-lg font-medium transition-colors duration-200">Home</a></li>
+                    <li><a href="about.html" class="text-white hover:text-[#cad2c5] text-lg font-medium transition-colors duration-200">About Us</a></li>
+                    <li><a href="services.html" class="text-white hover:text-[#cad2c5] text-lg font-medium transition-colors duration-200">Services</a></li>
+                    <li><a href="contact.html" class="text-white hover:text-[#cad2c5] text-lg font-medium transition-colors duration-200">Contact</a></li>
                 </ul>
             </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Mobile Navigation Container -->
+            <div id="mobile-menu-container" class="mobile-menu-container hidden md:hidden">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
         </div>
     </header>
 
@@ -167,18 +225,18 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 mt-12">
-        <div class="container mx-auto px-4 text-center text-gray-400">
+    <footer class="bg-[#394e59] text-white py-6 mt-12"> <!-- Dark grey-blue from palette -->
+        <div class="container mx-auto px-4 text-center text-gray-200">
             &copy; 2025 Gadget Joint. All rights reserved.
         </div>
     </footer>
 
     <!-- Simple Message Box for "Add to Cart" -->
     <div id="message-box" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm text-center">
-            <h3 id="message-box-title" class="text-xl font-semibold mb-4 text-purple-700"></h3>
+        <div class="bg-[#eae6e3] p-6 rounded-lg shadow-xl max-w-sm text-center"> <!-- Very light grey/off-white for message box -->
+            <h3 id="message-box-title" class="text-xl font-semibold mb-4 text-[#1d3557]"></h3> <!-- Dark blue/navy for title -->
             <p id="message-box-content" class="text-gray-700 mb-6"></p>
-            <button id="message-box-close" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200">
+            <button id="message-box-close" class="bg-[#1d3557] hover:bg-[#55675b] text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200">
                 Got It!
             </button>
         </div>
@@ -191,6 +249,16 @@
             const messageBoxTitle = document.getElementById('message-box-title');
             const messageBoxContent = document.getElementById('message-box-content');
             const messageBoxClose = document.getElementById('message-box-close');
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuContainer = document.getElementById('mobile-menu-container');
+
+            // Toggle mobile menu
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenuContainer.classList.toggle('hidden'); // For initial hide/show using Tailwind utility
+                mobileMenuContainer.classList.toggle('active'); // For CSS transition
+            });
+
 
             messageBoxClose.addEventListener('click', () => {
                 messageBox.classList.add('hidden');
@@ -306,8 +374,8 @@
                     <img src="${imageUrl}" alt="${name}" class="w-full h-48 object-cover rounded-lg mb-4 transform transition-transform duration-300 hover:scale-105">
                     <h2 class="text-2xl font-bold text-gray-900 mb-2 text-center">${name}</h2>
                     <p class="text-sm text-gray-600 text-center mb-4 flex-grow">${description}</p>
-                    <p class="text-3xl font-extrabold text-purple-700 mb-6">$${price}</p>
-                    <button data-id="${id}" class="add-to-cart-button bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 text-lg w-full transform active:scale-95">
+                    <p class="text-3xl font-extrabold text-[#1d3557] mb-6">$${price}</p> <!-- Dark blue/navy for price -->
+                    <button data-id="${id}" class="add-to-cart-button bg-[#1d3557] hover:bg-[#55675b] text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 text-lg w-full transform active:scale-95">
                         Add to Cart
                     </button>
                 `;
