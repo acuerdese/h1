@@ -3,106 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PackSavvy Solutions - Modern Packaging</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="styles.css">
+    <title>Gadget Joint</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light gray background */
+            padding-top: 64px; /* Adjust for fixed header height */
+        }
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure it stays on top */
+        }
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 500px; /* Full-screen height for hero */
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background-size: cover;
+            background-position: center;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+        .slider-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 9999px; /* full rounded */
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+        .slider-control:hover {
+            background-color: rgba(0,0,0,0.7);
+        }
+        .slider-prev {
+            left: 1rem;
+        }
+        .slider-next {
+            right: 1rem;
+        }
+        .slider-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        .gadget-card {
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInScale 0.6s ease-out forwards;
+            background-color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* Subtle shadow */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .gadget-card:hover {
+            transform: translateY(-5px) scale(1.02); /* Lift and slight scale on hover */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1); /* More pronounced shadow on hover */
+        }
+        .add-to-cart-button {
+            transition: background-color 0.3s ease-in-out, transform 0.1s ease-in-out;
+        }
+        .add-to-cart-button:hover {
+            background-color: #e03a00; /* Darker red on hover */
+            transform: translateY(-2px); /* Slight lift */
+        }
+        .add-to-cart-button:active {
+            transform: translateY(0); /* Press effect */
+        }
+        @keyframes fadeInScale {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        /* Staggered animation delay for cards */
+        .gadget-card:nth-child(1) { animation-delay: 0.1s; }
+        .gadget-card:nth-child(2) { animation-delay: 0.2s; }
+        .gadget-card:nth-child(3) { animation-delay: 0.3s; }
+        .gadget-card:nth-child(4) { animation-delay: 0.4s; }
+        .gadget-card:nth-child(5) { animation-delay: 0.5s; }
+        .gadget-card:nth-child(6) { animation-delay: 0.6s; }
+        .gadget-card:nth-child(7) { animation-delay: 0.7s; }
+        .gadget-card:nth-child(8) { animation-delay: 0.8s; }
+        /* Add more as needed for the number of products */
+    </style>
 </head>
-<body>
-    <header>
-        <div class="logo">PackSavvy Solutions</div>
-        <nav>
-            <a href="#hero">Home</a>
-            <a href="#about">About</a>
-            <a href="#products">Products</a>
-            <a href="#testimonials">Testimonials</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <div class="hamburger"><i class="fas fa-bars"></i></div>
+<body class="antialiased text-gray-800">
+
+    <!-- Fixed Header -->
+    <header class="fixed-header bg-gradient-to-r from-purple-700 to-pink-600 py-4 shadow-lg">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-extrabold text-white tracking-tight leading-none">Gadget Joint</a>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-white hover:text-purple-200 text-lg font-medium transition-colors duration-200">Home</a></li>
+                    <li><a href="about.html" class="text-white hover:text-purple-200 text-lg font-medium transition-colors duration-200">About Us</a></li>
+                    <li><a href="services.html" class="text-white hover:text-purple-200 text-lg font-medium transition-colors duration-200">Services</a></li>
+                    <li><a href="contact.html" class="text-white hover:text-purple-200 text-lg font-medium transition-colors duration-200">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <main>
-        <section id="hero" class="hero">
-            <div class="hero-content">
-                <h1>Premium Paper & Packaging Solutions</h1>
-                <p>High-quality materials for all your boxing needs</p>
-                <button>Shop Now</button>
-            </div>
-        </section>
-        <section id="about" class="about">
-            <div class="about-text" data-aos="fade-right">
-                <h2>About Us</h2>
-                <p>PackSavvy Solutions is your trusted partner in packaging, offering innovative and sustainable paper products for businesses worldwide.</p>
-            </div>
-            <div class="about-image" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Our Team">
-            </div>
-        </section>
-        <section id="products" class="products">
-            <h2 data-aos="fade-up">Our Products</h2>
-            <div class="product-grid">
-                <div class="product" data-aos="zoom-in">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Kraft Paper Rolls">
-                    <h3>Kraft Paper Rolls</h3>
-                    <p>Durable and eco-friendly for all packaging needs</p>
-                </div>
-                <div class="product" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1586374579358-9d19d632b698?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Custom Cardboard Boxes">
-                    <h3>Custom Cardboard Boxes</h3>
-                    <p>Tailored designs to fit your brand</p>
-                </div>
-                <div class="product" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1602143407151-1b66b3e29735?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Packaging Tape">
-                    <h3>Packaging Tape</h3>
-                    <p>Strong adhesion for secure shipments</p>
-                </div>
-            </div>
-        </section>
-        <section id="testimonials" class="testimonials">
-            <h2 data-aos="fade-up">What Our Clients Say</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial" data-aos="flip-left">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Client 1">
-                    <p>"The best packaging materials we've ever used!"</p>
-                    <span>John Doe, BoxCo</span>
-                </div>
-                <div class="testimonial" data-aos="flip-left" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Client 2">
-                    <p>"Fast, reliable, and beautifully designed products."</p>
-                    <span>Jane Smith, PackPro</span>
-                </div>
-            </div>
-        </section>
-        <section id="contact" class="contact">
-            <h2 data-aos="fade-up">Get in Touch</h2>
-            <div class="contact-wrapper">
-                <form data-aos="fade-right">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
-                <div class="contact-info" data-aos="fade-left">
-                    <p><strong>Email:</strong> info@packsavvysolutions.com</p>
-                    <p><strong>Phone:</strong> (555) 123-4567</p>
-                    <p><strong>Address:</strong> 123 Packaging Lane, Industry City</p>
-                </div>
-            </div>
+
+    <!-- Hero Full-Screen Slider -->
+    <section class="container mx-auto px-4 mt-4 mb-10">
+        <div id="hero-slider" class="hero-slider">
+            <!-- Slides will be injected here by JavaScript -->
+            <button class="slider-control slider-prev text-2xl font-bold">&lt;</button>
+            <button class="slider-control slider-next text-2xl font-bold">&gt;</button>
+            <div class="slider-dots"></div>
+        </div>
+    </section>
+
+    <!-- Main Content - Gadget Grid -->
+    <main class="container mx-auto px-4 py-8">
+        <section id="gadget-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- Gadget cards will be injected here by JavaScript -->
         </section>
     </main>
-    <footer>
-        <p>&copy; 2023 PackSavvy Solutions. All rights reserved.</p>
-        <div class="social">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            &copy; 2025 Gadget Joint. All rights reserved.
         </div>
     </footer>
-    <button id="back-to-top">↑</button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="script.js"></script>
+
+    <!-- Simple Message Box for "Add to Cart" -->
+    <div id="message-box" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm text-center">
+            <h3 id="message-box-title" class="text-xl font-semibold mb-4 text-purple-700"></h3>
+            <p id="message-box-content" class="text-gray-700 mb-6"></p>
+            <button id="message-box-close" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200">
+                Got It!
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const gadgetList = document.getElementById('gadget-list');
+            const messageBox = document.getElementById('message-box');
+            const messageBoxTitle = document.getElementById('message-box-title');
+            const messageBoxContent = document.getElementById('message-box-content');
+            const messageBoxClose = document.getElementById('message-box-close');
+
+            messageBoxClose.addEventListener('click', () => {
+                messageBox.classList.add('hidden');
+            });
+
+            function showMessage(title, content) {
+                messageBoxTitle.textContent = title;
+                messageBoxContent.textContent = content;
+                messageBox.classList.remove('hidden');
+            }
+
+            // XML data as a string for demonstration purposes
+            const gadgetsXMLString = `
+                <gadgets>
+                    <gadget id="1">
+                        <name>Smartwatch Pro X</name>
+                        <price>299.99</price>
+                        <imageUrl>https://placehold.co/400x300/a855f7/ffffff?text=Smartwatch</imageUrl>
+                        <description>Track your fitness, receive notifications, and make calls with this sleek smartwatch.</description>
+                    </gadget>
+                    <gadget id="2">
+                        <name>Wireless Earbuds Z</name>
+                        <price>129.50</price>
+                        <imageUrl>https://placehold.co/400x300/ec4899/ffffff?text=Earbuds</imageUrl>
+                        <description>Immersive sound and comfortable fit for your daily audio needs.</description>
+                    </gadget>
+                    <gadget id="3">
+                        <name>Portable Bluetooth Speaker</name>
+                        <price>75.00</price>
+                        <imageUrl>https://placehold.co/400x300/f59e0b/ffffff?text=Speaker</imageUrl>
+                        <description>Compact yet powerful, perfect for parties and outdoor adventures.</description>
+                    </gadget>
+                    <gadget id="4">
+                        <name>Gaming Keyboard RGB</name>
+                        <price>150.00</price>
+                        <imageUrl>https://placehold.co/400x300/10b981/ffffff?text=Keyboard</imageUrl>
+                        <description>Mechanical switches and customizable RGB lighting for the ultimate gaming experience.</description>
+                    </gadget>
+                    <gadget id="5">
+                        <name>Ergonomic Mouse</name>
+                        <price>45.99</price>
+                        <imageUrl>https://placehold.co/400x300/3b82f6/ffffff?text=Mouse</imageUrl>
+                        <description>Designed for comfort and precision, reducing strain during long work sessions.</description>
+                    </gadget>
+                    <gadget id="6">
+                        <name>VR Headset Elite</name>
+                        <price>599.99</price>
+                        <imageUrl>https://placehold.co/400x300/ef4444/ffffff?text=VR+Headset</imageUrl>
+                        <description>Step into virtual worlds with stunning visuals and immersive audio.</description>
+                    </gadget>
+                    <gadget id="7">
+                        <name>Smart Home Hub</name>
+                        <price>89.00</price>
+                        <imageUrl>https://placehold.co/400x300/8b5cf6/ffffff?text=Smart+Hub</imageUrl>
+                        <description>Control all your smart devices from a single, intuitive hub.</description>
+                    </gadget>
+                    <gadget id="8">
+                        <name>Drone Explorer Mini</name>
+                        <price>210.00</price>
+                        <imageUrl>https://placehold.co/400x300/06b6d4/ffffff?text=Drone</imageUrl>
+                        <description>Capture breathtaking aerial footage with this easy-to-fly mini drone.</description>
+                    </gadget>
+                </gadgets>
+            `;
+
+            // XML data for hero slider
+            const sliderXMLString = `
+                <slides>
+                    <slide>
+                        <imageUrl>https://placehold.co/1200x500/6b21a8/ffffff?text=Welcome+to+Gadget+Joint!</imageUrl>
+                        <title>Discover the Latest Tech!</title>
+                        <description>Explore our wide range of innovative gadgets.</description>
+                    </slide>
+                    <slide>
+                        <imageUrl>https://placehold.co/1200x500/be185d/ffffff?text=Smart+Living+Starts+Here</imageUrl>
+                        <title>Smart Living Starts Here</title>
+                        <description>From home automation to wearable tech, we have it all.</description>
+                    </slide>
+                    <slide>
+                        <imageUrl>https://placehold.co/1200x500/f59e0b/ffffff?text=Unleash+Your+Potential</imageUrl>
+                        <title>Unleash Your Potential</title>
+                        <description>Find the perfect gadget to elevate your everyday life.</description>
+                    </slide>
+                </slides>
+            `;
+
+            // Parse XML strings
+            const parser = new DOMParser();
+            const xmlDocGadgets = parser.parseFromString(gadgetsXMLString, "application/xml");
+            const gadgets = xmlDocGadgets.getElementsByTagName('gadget');
+
+            const xmlDocSlider = parser.parseFromString(sliderXMLString, "application/xml");
+            const slidesData = xmlDocSlider.getElementsByTagName('slide');
+
+            // Function to safely get text content, handling potential missing elements
+            const getElementTextContent = (parent, tagName) => {
+                const element = parent.getElementsByTagName(tagName)[0];
+                return element ? element.textContent : '';
+            };
+
+            // --- Gadget List Population ---
+            function createGadgetCard(gadget) {
+                const id = getElementTextContent(gadget, 'id');
+                const name = getElementTextContent(gadget, 'name');
+                const priceText = getElementTextContent(gadget, 'price');
+                const price = priceText ? parseFloat(priceText).toFixed(2) : '0.00';
+                const imageUrl = getElementTextContent(gadget, 'imageUrl');
+                const description = getElementTextContent(gadget, 'description');
+
+                const card = document.createElement('div');
+                card.className = 'gadget-card rounded-xl overflow-hidden shadow-lg p-6 flex flex-col items-center justify-between transition-all duration-300 ease-in-out';
+                card.innerHTML = `
+                    <img src="${imageUrl}" alt="${name}" class="w-full h-48 object-cover rounded-lg mb-4 transform transition-transform duration-300 hover:scale-105">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2 text-center">${name}</h2>
+                    <p class="text-sm text-gray-600 text-center mb-4 flex-grow">${description}</p>
+                    <p class="text-3xl font-extrabold text-purple-700 mb-6">$${price}</p>
+                    <button data-id="${id}" class="add-to-cart-button bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 text-lg w-full transform active:scale-95">
+                        Add to Cart
+                    </button>
+                `;
+                const addToCartBtn = card.querySelector('.add-to-cart-button');
+                addToCartBtn.addEventListener('click', () => {
+                    showMessage('Added to Cart!', `You added "${name}" to your cart for $${price}.`);
+                });
+                return card;
+            }
+
+            for (let i = 0; i < gadgets.length; i++) {
+                const card = createGadgetCard(gadgets[i]);
+                gadgetList.appendChild(card);
+            }
+
+            // --- Hero Slider Functionality ---
+            const heroSlider = document.getElementById('hero-slider');
+            const sliderPrevBtn = heroSlider.querySelector('.slider-prev');
+            const sliderNextBtn = heroSlider.querySelector('.slider-next');
+            const sliderDotsContainer = heroSlider.querySelector('.slider-dots');
+            let currentSlideIndex = 0;
+            let slides = []; // To store created slide elements
+            let autoSlideInterval;
+
+            function createHeroSlide(slideData, index) {
+                const imageUrl = getElementTextContent(slideData, 'imageUrl');
+                const title = getElementTextContent(slideData, 'title');
+                const description = getElementTextContent(slideData, 'description');
+
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                slide.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${imageUrl})`;
+                slide.innerHTML = `
+                    <h2 class="text-5xl md:text-6xl font-extrabold mb-4 text-center px-4">${title}</h2>
+                    <p class="text-xl md:text-2xl text-center px-4">${description}</p>
+                `;
+                heroSlider.prepend(slide); // Add to the beginning to keep controls on top
+                slides.push(slide);
+
+                const dot = document.createElement('span');
+                dot.className = 'dot';
+                dot.addEventListener('click', () => goToSlide(index));
+                sliderDotsContainer.appendChild(dot);
+            }
+
+            for (let i = 0; i < slidesData.length; i++) {
+                createHeroSlide(slidesData[i], i);
+            }
+
+            // Reverse slides array because we prepended them
+            slides.reverse();
+
+            function updateSlider() {
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentSlideIndex);
+                });
+                const dots = sliderDotsContainer.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlideIndex);
+                });
+            }
+
+            function goToSlide(index) {
+                currentSlideIndex = (index + slides.length) % slides.length;
+                updateSlider();
+                resetAutoSlide();
+            }
+
+            function nextSlide() {
+                goToSlide(currentSlideIndex + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentSlideIndex - 1);
+            }
+
+            sliderNextBtn.addEventListener('click', nextSlide);
+            sliderPrevBtn.addEventListener('click', prevSlide);
+
+            function startAutoSlide() {
+                autoSlideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+            }
+
+            function resetAutoSlide() {
+                clearInterval(autoSlideInterval);
+                startAutoSlide();
+            }
+
+            updateSlider(); // Initialize first slide
+            startAutoSlide(); // Start auto-play
+        });
+    </script>
 </body>
 </html>
