@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gadgets>
     <gadget id="1">
-        <name>Smartwash Pro X</name>
+        <name>Smartwatch Pro X</name>
         <price>299.99</price>
         <imageUrl>https://placehold.co/400x300/a855f7/ffffff?text=Smartwatch</imageUrl>
         <description>Track your fitness, receive notifications, and make calls with this sleek smartwatch.</description>
