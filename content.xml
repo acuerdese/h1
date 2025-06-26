@@ -1,88 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<website>
-  <!-- Logo -->
-  <logo>PackSavvy Solutions</logo>
-  
-  <!-- Navigation Menu -->
-  <nav>
-    <item href="#hero">Home</item>
-    <item href="#about">About</item>
-    <item href="#products">Products</item>
-    <item href="#testimonials">Testimonials</item>
-    <item href="#contact">Contact</item>
-  </nav>
-  
-  <!-- Hero Section -->
-  <hero>
-    <image url="https://images.unsplash.com/photo-1586208959836-73e4d717a58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"/>
-    <headline>Premium Paper & Packaging Solutions</headline>
-    <subtext>High-quality materials for all your boxing needs</subtext>
-    <button>Shop Now</button>
-  </hero>
-  
-  <!-- About Section -->
-  <about>
-    <image url="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"/>
-    <text>PackSavvy Solutions is your trusted partner in packaging, offering innovative and sustainable paper products for businesses worldwide.</text>
-  </about>
-  
-  <!-- Products Section -->
-  <products>
-    <product>
-      <image url="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"/>
-      <name>Kraft Paper Rolls</name>
-      <description>Durable and eco-friendly for all packaging needs</description>
-      <button>Learn More</button>
-    </product>
-    <product>
-      <image url="https://images.unsplash.com/photo-1586374579358-9d19d632b698?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"/>
-      <name>Custom Cardboard Boxes</name>
-      <description>Tailored designs to fit your brand</description>
-      <button>Learn More</button>
-    </product>
-    <product>
-      <image url="https://images.unsplash.com/photo-1602143407151-1b66b3e29735?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"/>
-      <name>Packaging Tape</name>
-      <description>Strong adhesion for secure shipments</description>
-      <button>Learn More</button>
-    </product>
-  </products>
-  
-  <!-- Testimonials Section -->
-  <testimonials>
-    <testimonial>
-      <image url="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"/>
-      <text>"The best packaging materials we've ever used!"</text>
-      <name>John Doe</name>
-      <company>BoxCo</company>
-    </testimonial>
-    <testimonial>
-      <image url="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"/>
-      <text>"Fast, reliable, and beautifully designed products."</text>
-      <name>Jane Smith</name>
-      <company>PackPro</company>
-    </testimonial>
-  </testimonials>
-  
-  <!-- Contact Section -->
-  <contact>
-    <form>
-      <labels>
-        <name>Name</name>
-        <email>Email</email>
-        <message>Message</message>
-      </labels>
-      <button>Send Message</button>
-    </form>
-    <info>
-      <email>info@packsavvysolutions.com</email>
-      <phone>(555) 123-4567</phone>
-      <address>123 Packaging Lane, Industry City</address>
-    </info>
-    <social>
-      <platform name="Facebook" icon="fab fa-facebook" url="https://facebook.com/packsavvysolutions"/>
-      <platform name="Twitter" icon="fab fa-twitter" url="https://twitter.com/packsavvysolutions"/>
-      <platform name="Instagram" icon="fab fa-instagram" url="https://instagram.com/packsavvysolutions"/>
-    </social>
-  </contact>
-</website>
+<gadgets>
+    <gadget id="1">
+        <name>Smartwatch Pro X</name>
+        <price>299.99</price>
+        <imageUrl>https://placehold.co/400x300/a855f7/ffffff?text=Smartwatch</imageUrl>
+        <description>Track your fitness, receive notifications, and make calls with this sleek smartwatch.</description>
+    </gadget>
+    <gadget id="2">
+        <name>Wireless Earbuds Z</name>
+        <price>129.50</price>
+        <imageUrl>https://placehold.co/400x300/ec4899/ffffff?text=Earbuds</imageUrl>
+        <description>Immersive sound and comfortable fit for your daily audio needs.</description>
+    </gadget>
+    <gadget id="3">
+        <name>Portable Bluetooth Speaker</name>
+        <price>75.00</price>
+        <imageUrl>https://placehold.co/400x300/f59e0b/ffffff?text=Speaker</imageUrl>
+        <description>Compact yet powerful, perfect for parties and outdoor adventures.</description>
+    </gadget>
+    <gadget id="4">
+        <name>Gaming Keyboard RGB</name>
+        <price>150.00</price>
+        <imageUrl>https://placehold.co/400x300/10b981/ffffff?text=Keyboard</imageUrl>
+        <description>Mechanical switches and customizable RGB lighting for the ultimate gaming experience.</description>
+    </gadget>
+    <gadget id="5">
+        <name>Ergonomic Mouse</name>
+        <price>45.99</name>
+        <imageUrl>https://placehold.co/400x300/3b82f6/ffffff?text=Mouse</imageUrl>
+        <description>Designed for comfort and precision, reducing strain during long work sessions.</description>
+    </gadget>
+    <gadget id="6">
+        <name>VR Headset Elite</name>
+        <price>599.99</price>
+        <imageUrl>https://placehold.co/400x300/ef4444/ffffff?text=VR+Headset</imageUrl>
+        <description>Step into virtual worlds with stunning visuals and immersive audio.</description>
+    </gadget>
+    <gadget id="7">
+        <name>Smart Home Hub</name>
+        <price>89.00</price>
+        <imageUrl>https://placehold.co/400x300/8b5cf6/ffffff?text=Smart+Hub</imageUrl>
+        <description>Control all your smart devices from a single, intuitive hub.</description>
+    </gadget>
+    <gadget id="8">
+        <name>Drone Explorer Mini</name>
+        <price>210.00</price>
+        <imageUrl>https://placehold.co/400x300/06b6d4/ffffff?text=Drone</imageUrl>
+        <description>Capture breathtaking aerial footage with this easy-to-fly mini drone.</description>
+    </gadget>
+</gadgets>
