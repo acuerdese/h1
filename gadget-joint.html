@@ -270,89 +270,6 @@
                 messageBox.classList.remove('hidden');
             }
 
-            // XML data as a string for demonstration purposes
-            const gadgetsXMLString = `
-                <gadgets>
-                    <gadget id="1">
-                        <name>Smartwatch Pro X</name>
-                        <price>299.99</price>
-                        <imageUrl>https://placehold.co/400x300/a855f7/ffffff?text=Smartwatch</imageUrl>
-                        <description>Track your fitness, receive notifications, and make calls with this sleek smartwatch.</description>
-                    </gadget>
-                    <gadget id="2">
-                        <name>Wireless Earbuds Z</name>
-                        <price>129.50</price>
-                        <imageUrl>https://placehold.co/400x300/ec4899/ffffff?text=Earbuds</imageUrl>
-                        <description>Immersive sound and comfortable fit for your daily audio needs.</description>
-                    </gadget>
-                    <gadget id="3">
-                        <name>Portable Bluetooth Speaker</name>
-                        <price>75.00</price>
-                        <imageUrl>https://placehold.co/400x300/f59e0b/ffffff?text=Speaker</imageUrl>
-                        <description>Compact yet powerful, perfect for parties and outdoor adventures.</description>
-                    </gadget>
-                    <gadget id="4">
-                        <name>Gaming Keyboard RGB</name>
-                        <price>150.00</price>
-                        <imageUrl>https://placehold.co/400x300/10b981/ffffff?text=Keyboard</imageUrl>
-                        <description>Mechanical switches and customizable RGB lighting for the ultimate gaming experience.</description>
-                    </gadget>
-                    <gadget id="5">
-                        <name>Ergonomic Mouse</name>
-                        <price>45.99</price>
-                        <imageUrl>https://placehold.co/400x300/3b82f6/ffffff?text=Mouse</imageUrl>
-                        <description>Designed for comfort and precision, reducing strain during long work sessions.</description>
-                    </gadget>
-                    <gadget id="6">
-                        <name>VR Headset Elite</name>
-                        <price>599.99</price>
-                        <imageUrl>https://placehold.co/400x300/ef4444/ffffff?text=VR+Headset</imageUrl>
-                        <description>Step into virtual worlds with stunning visuals and immersive audio.</description>
-                    </gadget>
-                    <gadget id="7">
-                        <name>Smart Home Hub</name>
-                        <price>89.00</price>
-                        <imageUrl>https://placehold.co/400x300/8b5cf6/ffffff?text=Smart+Hub</imageUrl>
-                        <description>Control all your smart devices from a single, intuitive hub.</description>
-                    </gadget>
-                    <gadget id="8">
-                        <name>Drone Explorer Mini</name>
-                        <price>210.00</price>
-                        <imageUrl>https://placehold.co/400x300/06b6d4/ffffff?text=Drone</imageUrl>
-                        <description>Capture breathtaking aerial footage with this easy-to-fly mini drone.</description>
-                    </gadget>
-                </gadgets>
-            `;
-
-            // XML data for hero slider
-            const sliderXMLString = `
-                <slides>
-                    <slide>
-                        <imageUrl>https://placehold.co/1200x500/6b21a8/ffffff?text=Welcome+to+Gadget+Joint!</imageUrl>
-                        <title>Discover the Latest Tech!</title>
-                        <description>Explore our wide range of innovative gadgets.</description>
-                    </slide>
-                    <slide>
-                        <imageUrl>https://placehold.co/1200x500/be185d/ffffff?text=Smart+Living+Starts+Here</imageUrl>
-                        <title>Smart Living Starts Here</title>
-                        <description>From home automation to wearable tech, we have it all.</description>
-                    </slide>
-                    <slide>
-                        <imageUrl>https://placehold.co/1200x500/f59e0b/ffffff?text=Unleash+Your+Potential</imageUrl>
-                        <title>Unleash Your Potential</title>
-                        <description>Find the perfect gadget to elevate your everyday life.</description>
-                    </slide>
-                </slides>
-            `;
-
-            // Parse XML strings
-            const parser = new DOMParser();
-            const xmlDocGadgets = parser.parseFromString(gadgetsXMLString, "application/xml");
-            const gadgets = xmlDocGadgets.getElementsByTagName('gadget');
-
-            const xmlDocSlider = parser.parseFromString(sliderXMLString, "application/xml");
-            const slidesData = xmlDocSlider.getElementsByTagName('slide');
-
             // Function to safely get text content, handling potential missing elements
             const getElementTextContent = (parent, tagName) => {
                 const element = parent.getElementsByTagName(tagName)[0];
@@ -386,10 +303,29 @@
                 return card;
             }
 
-            for (let i = 0; i < gadgets.length; i++) {
-                const card = createGadgetCard(gadgets[i]);
-                gadgetList.appendChild(card);
-            }
+            // Fetch XML data from index-xml.xml for gadgets
+            fetch('index-xml.xml')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(xmlString => {
+                    const parser = new DOMParser();
+                    const xmlDocGadgets = parser.parseFromString(xmlString, "application/xml");
+                    const gadgets = xmlDocGadgets.getElementsByTagName('gadget');
+
+                    // Populate the gadget list after fetching and parsing
+                    for (let i = 0; i < gadgets.length; i++) {
+                        const card = createGadgetCard(gadgets[i]);
+                        gadgetList.appendChild(card);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching gadgets XML:', error);
+                    showMessage('Error Loading Products', 'Could not load product information. Please try again later.');
+                });
 
             // --- Hero Slider Functionality ---
             const heroSlider = document.getElementById('hero-slider');
@@ -421,12 +357,34 @@
                 sliderDotsContainer.appendChild(dot);
             }
 
-            for (let i = 0; i < slidesData.length; i++) {
-                createHeroSlide(slidesData[i], i);
-            }
+            // Fetch XML data for hero slider
+            fetch('slider-data.xml')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(xmlString => {
+                    const parser = new DOMParser();
+                    const xmlDocSlider = parser.parseFromString(xmlString, "application/xml");
+                    const slidesData = xmlDocSlider.getElementsByTagName('slide');
 
-            // Reverse slides array because we prepended them
-            slides.reverse();
+                    for (let i = 0; i < slidesData.length; i++) {
+                        createHeroSlide(slidesData[i], i);
+                    }
+
+                    // Reverse slides array because we prepended them
+                    slides.reverse();
+
+                    updateSlider(); // Initialize first slide
+                    startAutoSlide(); // Start auto-play
+                })
+                .catch(error => {
+                    console.error('Error fetching slider XML:', error);
+                    // Optionally show a user-friendly message for slider
+                });
+
 
             function updateSlider() {
                 slides.forEach((slide, index) => {
@@ -463,9 +421,6 @@
                 clearInterval(autoSlideInterval);
                 startAutoSlide();
             }
-
-            updateSlider(); // Initialize first slide
-            startAutoSlide(); // Start auto-play
         });
     </script>
 </body>
