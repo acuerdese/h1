@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<slides>
+    <slide>
+        <imageUrl>https://placehold.co/1200x500/1d3557/eae6e3?text=Welcome+to+Gadget+Joint!</imageUrl>
+        <title>Discover the Latest Tech!</title>
+        <description>Explore our wide range of innovative gadgets.</description>
+    </slide>
+    <slide>
+        <imageUrl>https://placehold.co/1200x500/394e59/eae6e3?text=Smart+Living+Starts+Here</imageUrl>
+        <title>Smart Living Starts Here</title>
+        <description>From home automation to wearable tech, we have it all.</description>
+    </slide>
+    <slide>
+        <imageUrl>https://placehold.co/1200x500/55675b/eae6e3?text=Unleash+Your+Potential</imageUrl>
+        <title>Unleash Your Potential</title>
+        <description>Find the perfect gadget to elevate your everyday life.</description>
+    </slide>
+</slides>
